@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import Button from '@/components/ui/button';
 import { ShoppingBag } from 'lucide-react';
+import useCart from '@/hooks/use-cart';
+import { useRouter } from 'next/navigation';
 
 const NavbarActions = () => {
   //Hydration prevention
@@ -12,6 +14,9 @@ const NavbarActions = () => {
     setIsMounted(true);
   }, []);
 
+  const router = useRouter();
+  const cart = useCart();
+
   if (!isMounted){
     return null;
   }
@@ -20,13 +25,14 @@ const NavbarActions = () => {
     <div className='ml-auto flex items-center gap-x-4'>
       <Button
         className='flex items-center rounded-full bg-black px-4 py-2'
+        onClick={() => router.push('/cart')}
       >
           <ShoppingBag 
           size={20}
           color='white'
           />
           <span className='ml-2 text-sm font-medium text-white'>
-            0
+            {cart.items.length}
           </span>
       </Button>
     </div>
