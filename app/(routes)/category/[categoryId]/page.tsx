@@ -74,8 +74,7 @@ const CategoryPage : React.FC<CategoryPageProps> = async({
                 </div>
             </div>
         </Container>
-
-        CategoryPage</div>
+        </div>
   )
 }
 
